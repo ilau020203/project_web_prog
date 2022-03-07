@@ -10,7 +10,7 @@ const Header =(props)=>{
     return (
       <header className='header' >
         <h4>
-          Social 
+          Social  
         </h4>
        
       </header>
