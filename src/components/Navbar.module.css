@@ -1,0 +1,17 @@
+.container{
+    display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+    padding: 0.5rem;
+}
+
+.navlink{
+    display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+    width: 80%;
+    margin-top: 0.5rem;
+    border-radius: 5%;
+}
