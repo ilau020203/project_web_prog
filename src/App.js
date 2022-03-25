@@ -1,74 +1,35 @@
-import logo from './logo.svg';
-
 import './App.css';
-import Header from "./components/Header";
-import Friends from "./components/Friends";
+import "materialize-css"
 import Navbar from "./components/Navbar";
-import Messenger from "./components/Messenger";
-import News from "./components/News";
-import Register from "./components/Register";
 
-import { useState, useEffect } from "react";
+import {useRoutes} from './routes'
+import {useAuth} from './hooks/auth.hook'
+import { useState } from "react";
+
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { AuthContext } from './context/AuthContext';
 
-function App() {
+function App() 
+{
+  const { token, login, logout, userID } = useAuth()
+  const [isAuthenticated, setIsAuthenticated] = useState(!!token);
+  // const isAuthenticated = !!token
+  const routes = useRoutes(isAuthenticated, setIsAuthenticated)
 
-  const [isRegister, setIsRegister] = useState(false);
-  if (!isRegister)
-  {
-    return ( 
-    <Router>
-      <Routes>
-        <Route path="*" element={<Navigate  to="/signUp" />} />        
-      
-      <Route path="/signUp" element={
-                
-        <Register setIsRegister = {setIsRegister}>
-          
-        </Register>
-              
-            }></Route>
-      </Routes>
-    </Router>
-      
-    )
-  }
   return (
-    <div className="App"> 
-       <Router>  
-          <Header> 
-          </Header>
-        <Navbar>
-        </Navbar>
-        <main>
-          <Routes>
-          <Route exact path="/" element={<Navigate  to="/news" />} />  
-          <Route exact path="/signUp" element={<Navigate  to="/news" />} />
-            <Route path="/friends/" element={
-            <Friends>
-                </Friends>
-            }></Route>
-            <Route path="/messenger/" element={
-              <Messenger>
-
-                </Messenger>
-            }></Route>
-
-
-            
-            <Route path="/news" element={
-                
-                <News>
-                </News>
-              
-            }></Route>
-          </Routes>
-        </main>
-        
-      </Router> 
-    </div>
-  );
+    <AuthContext.Provider value = 
+      {{
+        token, login, logout, userID, isAuthenticated
+      }}>
+      <Router>
+        { isAuthenticated && <Navbar /> }
+        <div className="container">
+          {routes}
+        </div>
+      </Router>
+    </AuthContext.Provider>
+  )
 }
 
 export default App;
