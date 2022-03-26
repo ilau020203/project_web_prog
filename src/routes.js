@@ -8,14 +8,13 @@ import {SignUp} from "./pages/SignUp";
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-export const useRoutes = (isAuthenticated, setIsAuthenticated) => 
+export const useRoutes = (isAuthenticated) => 
 {
     if (isAuthenticated)
     {
         return (
             <>
-                <Header>    </Header>
-                <Navbar>    </Navbar>
+                
                 <main>
                     <Routes>
                         <Route exact path = "/" element={<Navigate  to="/news" />} />  
@@ -49,7 +48,7 @@ export const useRoutes = (isAuthenticated, setIsAuthenticated) =>
             <Route path = "*" element = {<Navigate to = "/signUp"/>} /> 
             <Route path = "/signUp" element =
                 {
-                    <SignUp setIsRegister = {setIsAuthenticated}>  </SignUp>
+                    <SignUp >  </SignUp>
                 }>
             </Route>
         </Routes>

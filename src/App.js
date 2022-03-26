@@ -12,11 +12,12 @@ import { AuthContext } from './context/AuthContext';
 
 function App() 
 {
-  const { token, login, logout, userID } = useAuth()
-  const [isAuthenticated, setIsAuthenticated] = useState(!!token);
-  // const isAuthenticated = !!token
-  const routes = useRoutes(isAuthenticated, setIsAuthenticated)
 
+  const { token, login, logout, userID } = useAuth()
+  console.log(token)
+  const isAuthenticated = !!token
+  const routes = useRoutes(isAuthenticated)
+  console.log(isAuthenticated)
   return (
     <AuthContext.Provider value = 
       {{
