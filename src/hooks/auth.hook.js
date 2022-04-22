@@ -1,27 +1,27 @@
 import {useState, useCallback, useEffect} from 'react'
 
-const storageName = 'userDatajhjh'
+const storageName = 'userDatjhjh'
 
 export const useAuth = () => 
 {
     const [token, setToken] = useState(null)
-    const [userID, setUserID] = useState(null)  
+    const [refreshToken, setrRefreshToken] = useState(null)  
 
-    const login = useCallback((jwtToken, id) => 
+    const login = useCallback((jwtToken, refreshToken) => 
     {
         setToken(jwtToken)
-        setUserID(id)
+        setrRefreshToken(refreshToken)
         
         localStorage.setItem(storageName, JSON.stringify(
             {
-                userID: id, token: jwtToken
+                refreshToken: refreshToken, token: jwtToken
             }))
      }, [])
 
     const logout = useCallback(() => 
     {
         setToken(null)
-        setUserID(null)
+        setrRefreshToken(null)
         localStorage.removeItem(storageName)
     }, [])
 
@@ -35,5 +35,5 @@ export const useAuth = () =>
         }
     }, [login])
 
-    return { login, logout, token, userID }
+    return { login, logout, token, refreshToken }
 }
