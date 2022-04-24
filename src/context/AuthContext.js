@@ -8,6 +8,9 @@ export const AuthContext = createContext(
         refreshToken: null,
         login: noop,
         logout: noop,
-        isAuthenticated: false
+        isAuthenticated: false,
+        id:null,
+        language:'en',
+        setLanguage:noop
     }
 )

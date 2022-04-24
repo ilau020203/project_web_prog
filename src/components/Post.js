@@ -1,11 +1,31 @@
 import React  from 'react';
 
+
+import LocalizedStrings from 'react-localization';
+import {useEffect,useState,useContext}  from 'react';
+import {useHttp} from '../hooks/http.hook'
+import {AuthContext} from "../context/AuthContext"
 import s from './Post.module.css'
 
 import { BrowserRouter as Router,Switch,Route,NavLink} from "react-router-dom";
 
 const Post =(props)=>{
+  const auth = useContext(AuthContext)
+  console.log(props.username)
+  let strings = new LocalizedStrings({
 
+      en:{
+        username:"You",
+        date:"Just now",
+        like: "Like"
+      },
+      ru: {
+          username:"Вы",
+          date:"Только что",
+          like: "Любо"
+      }
+     });
+  strings.setLanguage(auth.language)
    
     return (
       <div className={s.main}  >
@@ -13,34 +33,19 @@ const Post =(props)=>{
           <img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/768px-User_font_awesome.svg.png?20160212005950" alt="some avatar" className={s.avatar}></img>
           <div className={s.infoText}>
             <div className={s.username}>
-                Name Nemovich
+                {props.username} 
             </div>
             <div className={s.infoDate}>
-                2 years ago
+                {(new Date(Date.parse(props.date))).toTimeString()}
             </div>
           </div>
         </div>
-        <h1>Заголовок</h1>
-        <img className={s.picture} src ="https://ru-akpp.ru/wp-content/uploads/2016/04/audi_a4_akpp.jpg" alt="some picture"></img>
-        <p>        В заключении добавлю, вексель иллюстрирует правомерный доминантсептаккорд. Плавно-мобильное голосовое поле, по определению, образует ортштейн. Регрессное требование имеет закон. Ставка рефинансирования просветляет зеркальный потенциал почвенной влаги.
-        <br></br>
-Чернозём варьирует коносамент, что не имеет аналогов в англо-саксонской правовой системе. Конституция диссонирует разрез. Пескование активно.
-
-
-Динамический <em> эллипсис</em> <strong>горизонтально</strong> представляет собой умысел. Трехчастная фактурная форма нормативно просветляет промывной страховой полис. Векторно-зеркальная синхронность эволюционирует в фраджипэн.
-      </p>
+        <h1>{props.title}</h1>
+        
       <p>    
-         <ul>
-            <li>
-              asdf
-            </li>
-            <li>
-              asdf
-            </li>
-        </ul>
+         {props.text}
       </p>
-      <p>
-      </p>
+      <button disabled ={!props.enable} onClick={props.like}> {strings.like} </button> {props.count}
       </div>
     );
   

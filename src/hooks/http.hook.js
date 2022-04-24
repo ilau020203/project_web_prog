@@ -1,5 +1,7 @@
 import {useState, useCallback} from 'react'
+import {useContext}  from 'react';
 
+import {AuthContext} from "../context/AuthContext"
 export const useHttp = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -17,7 +19,9 @@ export const useHttp = () => {
 
       if (!response.ok) {
         if(response.status==401){
-          
+          // const auth = useContext(AuthContext)
+
+          // await fetch('auth/refresh', { method:'Post', body:{refreshToken: auth.refreshToken}, headers})
           console.log("asdf")
         }
         throw new Error(data.message || 'Что-то пошло не так')
