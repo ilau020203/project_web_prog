@@ -1,6 +1,6 @@
 # Stage 1
 # Build docker image of react app
-FROM node:12.18.2 as build-stage
+FROM node:16.14.2 as build-stage
 
 # set working directory
 RUN mkdir /usr/app
@@ -30,5 +30,6 @@ RUN rm -rf ./*
 # Copy static assets from builder stage
 COPY --from=build-stage /usr/app/build .
 
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 # Containers run nginx with global directives and daemon off
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -1,6 +1,5 @@
 import {useState, useCallback} from 'react'
 import {useContext}  from 'react';
-
 import {AuthContext} from "../context/AuthContext"
 export const useHttp = () => {
   const [loading, setLoading] = useState(false)
@@ -9,6 +8,7 @@ export const useHttp = () => {
   const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
     setLoading(true)
     try {
+      url="api/"+url;
       if (body) {
         body = JSON.stringify(body)
         headers['Content-Type'] = 'application/json'
