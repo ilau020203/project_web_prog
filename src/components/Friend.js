@@ -6,11 +6,9 @@ import { BrowserRouter as Router,Switch,Route,NavLink} from "react-router-dom";
 
 const Header =(props)=>{
 
-   
     return (
       <nav >
-        
-       
+               
       </nav>
     );
   

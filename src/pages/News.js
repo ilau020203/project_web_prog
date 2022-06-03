@@ -1,4 +1,5 @@
 import React  from 'react';
+import LocalizedStrings from 'react-localization';
 import {useEffect,useState,useContext,useRef}  from 'react';
 import {useHttp} from '../hooks/http.hook'
 import {AuthContext} from "../context/AuthContext"
@@ -50,11 +51,28 @@ useRelaxedInterval(async () => {
   console.log('Hello world!');
   
 }, 5000);
+
+let strings = new LocalizedStrings({
+
+  en:{
+      news:"Your friends' posts",
+   },
+  ru: {
+      news:"Публикации ваших друзей",
+  }
+ });
+strings.setLanguage(auth.language)
    
     return (<>
+      <div><h4>{strings.news}</h4></div>
       <div className={s.ribbon} >
       <CreatePost setUpdate={setUpdate}  update = {update}>
       </CreatePost>
+      
+      <Post 
+      text='Actualy the new' 
+      title='Just title'
+      ></Post>
 
       {
         posts.slice(0).reverse().map((value,i)=>{
@@ -93,11 +111,7 @@ useRelaxedInterval(async () => {
           
             </Post>)
         })
-      }
-        
-        
-          
-        
+      }       
        
       </div>
       </>
