@@ -1,4 +1,5 @@
 import React  from 'react';
+import LocalizedStrings from 'react-localization';
 import {useEffect,useState,useContext}  from 'react';
 import {useHttp} from '../hooks/http.hook'
 import {AuthContext} from "../context/AuthContext"
@@ -25,13 +26,26 @@ const Friends =(props)=>{
       }
       
     },[]);
+    
+    let strings = new LocalizedStrings({
+
+        en:{
+            empty_friends:"Oops, you haven't added anyone yet",
+            non_empty_friends:"Your friends:"
+        },
+        ru: {
+          empty_friends:"Похоже, вы еще никого не добавили",
+          non_empty_friends:"Ваши друзья:"
+        }
+       });
+    strings.setLanguage(auth.language)
+
     return (
       <div >
-        Friends
+        <h4>{strings.empty_friends}</h4>
         {users.map((value)=>{
           return (
-          <><p>{value.email}</p>
-          </>
+          <p>{value.email}</p>
           )
         })}
       </div>

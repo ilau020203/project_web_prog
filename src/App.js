@@ -1,5 +1,6 @@
 import './App.css';
 import "materialize-css"
+
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 
@@ -10,6 +11,8 @@ import { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from './context/AuthContext';
+
+
 
 function App() 
 {

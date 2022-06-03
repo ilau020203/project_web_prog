@@ -29,10 +29,9 @@ const CreatePost =(props)=>{
         toPost:"Опубликовать",
       }
      });
+
   strings.setLanguage(auth.language)
-
     return (
-
     <form onSubmit={(event) => {
                     event.preventDefault()
                      request('/post/create', 'Post',{text , title:title}, {
@@ -45,28 +44,24 @@ const CreatePost =(props)=>{
 
             
             <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">{strings.title}</span>
+            <span className="input-group-text" id="inputGroup-sizing-default"><h5 style={{float: 'left'}}>{strings.title}</h5></span>
             <input type="text" className="form-control" value={title} onChange={(input)=>{
               console.log(input.target.value,)
               sessionStorage.setItem('title', input.target.value)
               setTitle( input.target.value)
-          }}   aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" ></input>
+          }}   aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"></input>
             </div>
            
             <div className="input-group mb-3">
-            <span className="input-group-text" id="inputGroup-sizing-default">{strings.text}</span>
+            <span className="input-group-text" id="inputGroup-sizing-default"><h5 style={{float: 'left'}}>{strings.text}</h5></span>
             <input type="text" className="form-control" value={text} onChange={(input)=>{
               console.log(input.target.value)
               sessionStorage.setItem('text', input.target.value)
               setText( input.target.value)
           }}   aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" ></input>
             </div>
-            <button className="w-100 btn btn-lg btn-primary" type="submit">{strings.toPost}</button>
+            <button className="btn" style={{backgroundColor: 'rgb(25, 25, 25)', color: 'whitesmoke'}}>{strings.toPost}</button>
             
-        
-        
-            
-        
         </form>
          );
   

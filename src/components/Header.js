@@ -14,12 +14,11 @@ const options = [
   { value: 'en', label: 'English' },
 ];
 
-
 const Header =(props)=>{
   const auth = useContext(AuthContext)
   const [selectedOption, setSelectedOption] = useState('en')
+  
   let strings= new LocalizedStrings({
-
     en:{
         logout: "Log out",
         social: "DayNa and Ilau"
@@ -28,8 +27,7 @@ const Header =(props)=>{
         logout: "Выйти",
         social: "Биба и Боба"
     }
-   })
-  
+   })  
 
   let handleChange = (selectedOption) => {
     auth.setLanguage(selectedOption.value)
@@ -39,26 +37,33 @@ const Header =(props)=>{
       auth.language=selectedOption.value;
       setSelectedOption( selectedOption )
   };
-
   
-    
   strings.setLanguage(auth.language)
 
     return (
-      <header className='header' >
-        <h4 style={{color: "magenta"}}>
-          {strings.social}  
-        </h4>
+      <header className='header'>
+        
+        <class className='logo'>
+          <h4 style={{textAlign: ''}}>
+            {strings.social}  
+          </h4>
+        </class>
 
-        <button onClick={auth.logout}>{strings.logout}</button> 
         <Select
         value={selectedOption}
         onChange={handleChange}
         options={options}
-      />
+        ></Select>
+
+        <div id='button'>
+          <button 
+          style={{backgroundColor: 'rgb(50, 50, 50)'}}
+          onClick={auth.logout}>
+            <h5>{strings.logout}</h5>
+          </button> 
+        </div>
       </header>
     );
-  
 }
 
 export default Header;

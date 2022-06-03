@@ -1,17 +1,25 @@
 .container{
+    text-align: center;
     display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: column;
 	flex-direction: column;
     padding: 0.5rem;
+    
 }
 
 .navlink{
-    display: -webkit-flex;
+    text-align: center;
 	display: flex;
 	-webkit-flex-direction: row;
 	flex-direction: row;
-    width: 80%;
+    width: 75%;
     margin-top: 0.5rem;
-    border-radius: 5%;
+    border-radius: 10px;
+}
+
+.navlink:hover{
+    color: darkslateblue;
+    transition: 0.5s;
+    border-bottom: solid 1px darkslateblue;
 }

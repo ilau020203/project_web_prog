@@ -22,13 +22,13 @@ const Post =(props)=>{
       ru: {
           username:"Вы",
           date:"Только что",
-          like: "Любо"
+          like: "Нравится"
       }
      });
   strings.setLanguage(auth.language)
    
     return (
-      <div className={s.main}  >
+      <div className={s.main}>
         <div className={s.info}>
           <img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/768px-User_font_awesome.svg.png?20160212005950" alt="some avatar" className={s.avatar}></img>
           <div className={s.infoText}>
@@ -40,15 +40,17 @@ const Post =(props)=>{
             </div>
           </div>
         </div>
-        <h1>{props.title}</h1>
+        <span>    
+          <h4 style={{color: 'rgb(25, 25, 25)', fontFamily: '', fontSize: '30px', textAlign: 'center'}}>{props.title}</h4>
+        </span>
+        <span>
+          <h4 style={{color: 'rgb(25, 25, 25)', fontFamily: '', fontSize: '22px', textAlign: 'left'}}>{props.text}</h4>
+        </span>
         
-      <p>    
-         {props.text}
-      </p>
-      <button disabled ={!props.enable} onClick={props.like}> {strings.like} </button> {props.count}
+        <br></br>
+      <button style={{backgroundColor: 'rgb(25, 25, 25)', color: 'whitesmoke'}} disabled={!props.enable} onClick={props.like}> {strings.like} </button> {props.count}
       </div>
     );
-  
     
 }
 
