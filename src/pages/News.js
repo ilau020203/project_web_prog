@@ -69,10 +69,7 @@ strings.setLanguage(auth.language)
       <CreatePost setUpdate={setUpdate}  update = {update}>
       </CreatePost>
       
-      <Post 
-      text='Actualy the new' 
-      title='Just title'
-      ></Post>
+
 
       {
         posts.slice(0).reverse().map((value,i)=>{
